@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta >
+    <title>简约后台登录界面</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body ng-app='DemoApp'>
+    <div id="layout">
+        <!--首页头部 开始-->
+        <div id="head" class="clearfix">
+            <div class="title">
+                <h1>简约后台管理系统</h1>
+                <i></i>
+            </div>
+            <div class="rolling">
+                <span></span>
+            </div>
+            <div class="user">
+                <a href="index.html">
+                    <b></b>
+                    <span>管理员:</span>
+                    <span id='manger'></span>
+                </a>
+            </div>
+        </div>
+        <!--首页头部 结束-->
+        <div class="container-fluid">
+            <!--左侧边栏 开始-->
+            <div class="row" style="background:#e9e7ef;">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <div class="ico clearfix">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <ul auto-active class="nav nav-sidebar">
+                        <li>
+                            <a href="javascript:void(0);"><i></i>视频管理</a>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <a href="#/allvideo">查看所有视频</a>
+                                </div>
+                                <div class="col-xs-12">
+                                    <a href="#/allvideo/uservideo">用户视屏列表</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"><i></i>文档管理</a>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <a href="#/allfiles">查看所有文档</a>
+                                </div>
+                                <div class="col-xs-12">
+                                    <a href="#/allfiles/userfile">用户文档列表</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"><i></i>类别管理</a>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <a href="#/broadheading">大类信息</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"><i></i>用户管理</a>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <a href="#/usermanager/stu">学生管理</a>
+                                </div>
+                                <div class="col-xs-12">
+                                    <a href="#/usermanager">老师管理</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"><i></i>评价管理</a>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <a href="#/evaluate">评价删除</a>
+                                </div>
+                                <div class="col-xs-12">
+                                    <a href="#/evaluate/user">用户禁言</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"><i></i>公告管理</a>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <a href="#/notice">查看公告</a>
+                                </div>
+                                <div class="col-xs-12">
+                                    <a href="#/notice/add">添加公告</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"><i></i>退出系统</a>
+                            <!-- <div class="row">
+                            </div> -->
+                        </li>
+                    </ul>
+                </div>
+                <!--左侧边栏 结束-->
+                <!--内容区域 开始-->
+                <div class="col-sm-9  col-md-10  main" ng-view></div>
+                <!--内容区域 结束-->
+            </div>
+        </div>
+    </div>
+</body>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="js/app.js"></script>
+<script src="js/home.js"></script>
+<script>
+    //顶部文字显示效果
+    //获取相关元素
+    var msg = '数据无价,请谨慎操作！';
+    var seq = 0;
+    var len = msg.length;
+    var rolling = document.querySelector('.rolling');
+    // 文字从左至右显示
+    function Scroll () {
+        rolling.innerHTML = msg.substring(0,seq+1);
+        seq++;
+        if (seq >= len) {
+            seq = 0;
+            window.setTimeout('Scroll2();',500);
+        }else {
+            window.setTimeout('Scroll();',500)
+        }
+    }
+    //文字从左至右消失
+    function Scroll2() {
+        rolling.innerHTML = msg.substring(seq,len);
+        seq++;
+        if (seq > len) {
+            seq = 0;
+            window.setTimeout('Scroll();', 500);
+        }else {
+            window.setTimeout('Scroll2();', 500);
+        }
+    }
+    Scroll();
+</script>
+</html>

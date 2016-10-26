@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta >
+    <title>简约后台登录界面</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="js/login.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>简约后台管理</h1>
+            <form class="form" id="ajaxForm">
+                <input type="text" placeholder="Username" id="text" name="username"><span class="sp1"></span>
+                <input type="password" placeholder="Password" id="pass" name="password"><span class="sp2"></span>
+                <br>
+                <button id="login" type="button"><strong>登录</strong></button>
+            </form>
+        </div>
+        <ul id="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+<script>
+
+    //验证用户名密码
+    var text = document.querySelector('#text');
+    var pass = document.querySelector('#pass')
+    var sp1 = document.querySelector('.sp1');
+    var sp2 = document.querySelector('.sp2');
+    var btn = document.querySelector('button');
+    text.onblur = function () {
+        if (/^[a-zA-Z0-9_-]{3,16}$/.test(text.value)) {
+            sp1.innerHTML = ''
+        }else {
+            sp1.innerHTML = '用户名错误';
+        }
+    }
+    pass.onblur = function () {
+        if (/^[a-zA-Z0-9_-]{6,18}$/.test(pass.value)) {
+            sp2.innerHTML = '';
+        }else {
+            sp2.innerHTML = '密码错误';
+        }
+    }
+</script>
+</html>
